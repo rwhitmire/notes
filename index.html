@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes</title>
+  <style>
+    html, body {
+      margin: 0;
+    }
+
+    #editor {
+      box-sizing: border-box;
+      font-family: consolas, monospace;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      padding: 10px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="editor" contenteditable></div>
+  <script>
+    (function(){
+
+      'use strict'
+
+      var STORAGE_KEY = 'content'
+      var editor = document.getElementById('editor')
+
+      editor.addEventListener('input', function(e) {
+        localStorage.setItem(STORAGE_KEY,  e.target.innerHTML)
+      })
+
+      editor.focus()
+      editor.innerHTML = localStorage.getItem(STORAGE_KEY)
+
+    }())
+  </script>
+</body>
+</html>
